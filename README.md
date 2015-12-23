@@ -1,6 +1,6 @@
 # CoinsBill PHP Client
 
-This is a PHP Client for interacting with the [CoinsBill API](https://www.coinsbill.com/developers).
+This is a PHP Client for interacting with the [CoinsBill API Developer Docs](https://www.coinsbill.com/developers).
 
 ### Example Usage
 
