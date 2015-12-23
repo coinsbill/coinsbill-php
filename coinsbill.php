@@ -110,22 +110,31 @@ class CoinsBill implements Iterator, ArrayAccess {
         $url='invoice/';
         $items = $parameters['items'];
         $invoice =  $this->execute($url, 'POST', $parameters,  array('Content-Type' => 'application/json'));
-        echo 'invoice id: '. $invoice['orderId'];
+        // var_dump($invoice);
+        
         foreach ($items as $obj_key =>$item)
         {
-        echo 'item name: '. $item['name'];
-        echo 'item qty: '. $item['quantity'];
-        echo 'item price: '. $item['unit_price'];
-
-        $dataItem = array(
+        
+        $dataItem2 = array(
             'name' => $item['name'], 
             'quantity' => $item['quantity'],
             'unit_price' => $item['unit_price'], 
             'order' => $invoice['orderId'], 
         );
 
+        $dataItem = array(
+            'name' =>$item['name'], 
+            'quantity' => $item['quantity'],
+            'unit_price' =>  $item['unit_price'], 
+            'order' => $invoice['_id'],
+            '_unit_tax' => 0,
+            'tax_rate' => 0, 
+            'is_sale' => 'False'
+        );
+
         $ritem =  $this->execute('orderitem/', 'POST', $dataItem,  array('Content-Type' => 'application/json'));
-        // echo $ritem
+        
+        // var_dump($ritem);
 
         foreach($item as $key => $value){
                 echo sprintf("%s:%s ", $key, $value);
